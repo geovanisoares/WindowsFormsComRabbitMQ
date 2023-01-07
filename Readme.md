@@ -1,8 +1,8 @@
 # [WindowsForms com RabbitMQ]
-
+[[_TOC_]]
 A solução consiste em exemplificar a comunicação assincrona usando RabbitMQ, utilizando dois serviços, um de envio dos dados de lead para lista e outro de consumo dessa lista e exibição em tabela dos últimos leads consumidos da lista.
 
-**Resumo do funcionamento**
+## Resumo do funcionamento ##
 
 O serviço de envio (RabbitMQSender) envia os dados preenchidos em formulário para uma lista no broker do RabbitMQ.
 
@@ -36,8 +36,8 @@ Caso o container já tenha sido criado, mas não esteja em execução, clique no bot
 
 No Visual Studio, defina a solução para executar vários projetos de inicialização, caso ainda não esteja configurado.
 	
-	No gerenciado de soluções, clique com o botão direito na solução e depois em "Definir projetos de inicialização".
-	Na tela que abrir, selecione "Varios projetos de inicialização", em seguida, na coluna "ação", coloque os dois projetos para "Iniciar", clique em "Aplicar" depois em "OK".
+- No gerenciado de soluções, clique com o botão direito na solução e depois em "Definir projetos de inicialização".
+- Na tela que abrir, selecione "Varios projetos de inicialização", em seguida, na coluna "ação", coloque os dois projetos para "Iniciar", clique em "Aplicar" depois em "OK".
 
 ## Executando a aplicação ##
 
@@ -53,10 +53,11 @@ após o dado ser consumido, normalmente o mesmo é retirado da fila depois de proc
 persistido em banco de dados pela aplicação consumidora.
 
 Caso queira ver o funcionamento do RabbitMQ a partir de uma interface gráfica, com o container em execução, abra seu navegador e vá até localhost:8080.   
-  Será aberto a tela de login do RabbitMQ, o usuário é "guest" e a senha é "guest" também. Clique em "Login".
-  Na aba "Queues" será mostrada todas as filas criadas, se você registrou pelo menos um lead no serviço de envio (RabbitMQSender), aparecerá a fila "LeadQueue".
-  Clicando nela abrirá uma página contendo gráficos, informações sobre a fila e o histórico das mensagens enviadas.
-  Você pode manter esta tela aberta e registrar leads, assim poderá ver o RabbitMQ processando a mensagem e mostrando as alterações no gráfico.
+
+- Será aberto a tela de login do RabbitMQ, o usuário é "guest" e a senha é "guest" também. Clique em "Login".
+- Na aba "Queues" será mostrada todas as filas criadas, se você registrou pelo menos um lead no serviço de envio (RabbitMQSender), aparecerá a fila "LeadQueue".
+- Clicando nela abrirá uma página contendo gráficos, informações sobre a fila e o histórico das mensagens enviadas.
+- Você pode manter esta tela aberta e registrar leads, assim poderá ver o RabbitMQ processando a mensagem e mostrando as alterações no gráfico.
 
 
 ## Problemas conhecidos ##
