@@ -1,5 +1,4 @@
 # [WindowsForms com RabbitMQ]
-[[_TOC_]]
 A solução consiste em exemplificar a comunicação assincrona usando RabbitMQ, utilizando dois serviços, um de envio dos dados de lead para lista e outro de consumo dessa lista e exibição em tabela dos últimos leads consumidos da lista.
 
 ## Resumo do funcionamento ##
