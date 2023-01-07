@@ -1,0 +1,18 @@
+# RabbitMQ properties
+services:
+        rabbitmq:
+               image: rabbitmq:3-management
+               container_name: some-rabbit2
+               ports: 
+                - 8080:15672
+                - 80:25672 # (erlang) communication between the nodes and CLI tool
+                #- 15672:15672 # communication with the web management API 
+               #volumes:
+                # data persistence
+                #- /docker_conf/rabbitmq/data/:/var/lib/rabbitmq/
+                # data mapping -> host: container
+                # queues and messages data of the container will be stored on the host
+               environment:
+                - RABBITMQ_DEFAULT_USER=guest
+                - RABBITMQ_DEFAULT_PASS=guest
+               restart: always

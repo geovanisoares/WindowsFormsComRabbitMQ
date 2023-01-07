@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQConsumer", "RabbitMQConsumer\RabbitMQConsumer.csproj", "{CA08AE9D-1CE2-49E2-BF09-387F6319EDEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5909C6B0-3491-4AAB-90BD-231202923B8C}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQSender", "RabbitMQSender\RabbitMQSender.csproj", "{BD43B866-74B0-40B2-8D8B-704E7A0722DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA08AE9D-1CE2-49E2-BF09-387F6319EDEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA08AE9D-1CE2-49E2-BF09-387F6319EDEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA08AE9D-1CE2-49E2-BF09-387F6319EDEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA08AE9D-1CE2-49E2-BF09-387F6319EDEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD43B866-74B0-40B2-8D8B-704E7A0722DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD43B866-74B0-40B2-8D8B-704E7A0722DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD43B866-74B0-40B2-8D8B-704E7A0722DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD43B866-74B0-40B2-8D8B-704E7A0722DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D9516B97-10DF-463D-AB84-7BC7D9E07B3A}
+	EndGlobalSection
+EndGlobal
