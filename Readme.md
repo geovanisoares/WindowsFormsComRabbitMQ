@@ -51,5 +51,5 @@ persistido em banco de dados pela aplicação consumidora.
 
 ## Problemas conhecidos ##
 
- - O Docker, na versão citada acima, roda no WSL2 (Windows Subsistem for Linux) do Windows, caso você não tenha ou tenha uma versão incompatível com o Docker, o mesmo irá solicitar o update e informará a referência para instalação / update.
+ - O Docker, na versão citada acima, roda no WSL2 (Windows Subsystem for Linux) do Windows, caso você não tenha ou tenha uma versão incompatível com o Docker, o mesmo irá solicitar o update e informará a referência para instalação / update.   
  Para saber mais sobre o WLS: https://learn.microsoft.com/pt-br/windows/wsl/about.
