@@ -25,29 +25,39 @@ Com o docker em execução, abra o console do gerenciador de pacotes do visual stu
 
 Suba um container do RabbitMQ, conforme linha abaixo:
 
-	docker run -d --hostname my-rabbit --name some-rabbit -p 8080:15672 rabbitmq:3-management
+	docker run -d --hostname my-rabbit --name some-rabbit -p 8080:15672 -p 5672:5672 rabbitmq:3-management
 
-Caso o container já tenha sido criado, execute o seguinte comando:
+Após executar o comando acima, o docker irá procurar localmente os arquivos necessário e, não encontrando, vai até o dockerhub e os baixa, este processo pode demorar um pouco dependendo da sua internet.   
+Com o sucesso da instalação confira no docker desktop confira na aba "containers" se o RabbitMQ está em execução.
+
+Caso o container já tenha sido criado, mas não esteja em execução, clique no botão de executar no docker desktop ou execute o seguinte comando no terminal:
 
 	docker container start some-rabbit.
 
-Defina a solução para executar vários projetos de inicialização, caso ainda não esteja configurado.
+No Visual Studio, defina a solução para executar vários projetos de inicialização, caso ainda não esteja configurado.
 	
-	No gerenciado de soluções, clique com o botão direito e depois em "Definir projetos de inicialização".
+	No gerenciado de soluções, clique com o botão direito na solução e depois em "Definir projetos de inicialização".
 	Na tela que abrir, selecione "Varios projetos de inicialização", em seguida, na coluna "ação", coloque os dois projetos para "Iniciar", clique em "Aplicar" depois em "OK".
 
 ## Executando a aplicação ##
 
-Clique em iniciar no visual studio, será aberto duas telas, uma correspondende a aplicação responsável por enviar os dados para lista de leads, e outra responsável por consumir a lista de leads.
+No Visual Studio, clique em "Iniciar", será aberto duas telas, uma correspondende a aplicação responsável por enviar os dados para lista de leads, um formulário com nome e idade, e outra responsável por consumir a lista de leads.
 
 Você pode alimentar a lista de leads e assincronamente irá ver a aplicação consumidora exibir os dados do lead em tela, com o id gerado para o lead e data e hora de inserção desse registro.
 
-Caso queira comprovar a assincronia não bloqueante, execute apenas o servido de envio (RabbitMQSender), registre quandos leads quiser, depois abra a aplicação consumidora (RabbitMQConsumer), você verá a aplicação iniciando e consumindo na fila e exibindo em tela os dados que estavam aguardando para serem consumidos.
+Caso queira comprovar a assincronia não bloqueante, execute apenas o servido de envio (RabbitMQSender), registre quandos leads quiser, depois abra a aplicação consumidora (RabbitMQConsumer), você verá a aplicação iniciando, consumindo a fila e exibindo em tela os dados que estavam aguardando para serem consumidos.
 
-Esta solução e exemplificativa, após o consumo da fila pelo consumer, atualmente o dado é salvo em um 
+Esta solução é exemplificativa, após o consumo da fila pelo consumer, atualmente o dado é salvo em um 
 banco de dados em memória e permanece na fila por toda vida útil do container, em aplicações reais, 
 após o dado ser consumido, normalmente o mesmo é retirado da fila depois de processado e, se for o caso, 
 persistido em banco de dados pela aplicação consumidora.
+
+Caso queira ver o funcionamento do RabbitMQ a partir de uma interface gráfica, com o container em execução, abra seu navegador e vá até localhost:8080.   
+  Será aberto a tela de login do RabbitMQ, o usuário é "guest" e a senha é "guest" também. Clique em "Login".
+  Na aba "Queues" será mostrada todas as filas criadas, se você registrou pelo menos um lead no serviço de envio (RabbitMQSender), aparecerá a fila "LeadQueue".
+  Clicando nela abrirá uma página contendo gráficos, informações sobre a fila e o histórico das mensagens enviadas.
+  Você pode manter esta tela aberta e registrar leads, assim poderá ver o RabbitMQ processando a mensagem e mostrando as alterações no gráfico.
+
 
 ## Problemas conhecidos ##
 

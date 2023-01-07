@@ -29,6 +29,7 @@ namespace RabbitMQConsumer.Model
                 HostName = "localhost",
                 UserName = "guest",
                 Password = "guest"
+                
             };
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();

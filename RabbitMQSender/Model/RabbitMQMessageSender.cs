@@ -27,7 +27,7 @@ namespace RabbitMQSender.Model
             {
                 HostName = _hostname,
                 UserName = _userName,
-                Password = _password,
+                Password = _password
             };
             try
             {
