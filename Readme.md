@@ -15,6 +15,7 @@ O serviço de consumo tem um timer configurado para ficar ouvindo o banco em memó
 - IDE Visual Studio versão >= 2022.
 - Docker versão >= 20.10.14.
 - SDK .NET 6.
+- Windows >= 10.
 
 *A aplicação pode funcionar em versões anteriores das ferramentas acima, porém, é recomendado o uso das versões correspondentes informadas, pois correspondem aos utilizados no desenvolvimento e testes da aplicação.
 
@@ -47,3 +48,8 @@ Esta solução e exemplificativa, após o consumo da fila pelo consumer, atualmente
 banco de dados em memória e permanece na fila por toda vida útil do container, em aplicações reais, 
 após o dado ser consumido, normalmente o mesmo é retirado da fila depois de processado e, se for o caso, 
 persistido em banco de dados pela aplicação consumidora.
+
+## Problemas conhecidos ##
+
+ - O Docker, na versão citada acima, roda no WSL2 (Windows Subsistem for Linux) do Windows, caso você não tenha ou tenha uma versão incompatível com o Docker, o mesmo irá solicitar o update e informará a referência para instalação / update.
+ Para saber mais sobre o WLS: https://learn.microsoft.com/pt-br/windows/wsl/about.
