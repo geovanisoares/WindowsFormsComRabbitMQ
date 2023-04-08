@@ -1,65 +1,65 @@
-# [WindowsForms com RabbitMQ]
-A soluÁ„o consiste em exemplificar a comunicaÁ„o assincrona usando RabbitMQ, utilizando dois serviÁos, um de envio dos dados de lead para lista e outro de consumo dessa lista e exibiÁ„o em tabela dos ˙ltimos leads consumidos da lista.
+# WindowsForms com RabbitMQ
+A solu√ß√£o consiste em exemplificar a comunica√ß√£o assincrona usando RabbitMQ, utilizando dois servi√ßos, um de envio dos dados de lead para lista e outro de consumo dessa lista e exibi√ß√£o em tabela dos √∫ltimos leads consumidos da lista.
 
 ## Resumo do funcionamento ##
 
-O serviÁo de envio (RabbitMQSender) envia os dados preenchidos em formul·rio para uma lista no broker do RabbitMQ.
+O servi√ßo de envio (RabbitMQSender) envia os dados preenchidos em formul√°rio para uma lista no broker do RabbitMQ.
 
-O serviÁo de consumo (RabbiMQConsumer) consome os dados da lista do broker, gravando em um banco de dados em memÛria.
+O servi√ßo de consumo (RabbiMQConsumer) consome os dados da lista do broker, gravando em um banco de dados em mem√≥ria.
 
-O serviÁo de consumo tem um timer configurado para ficar ouvindo o banco em memÛria e exibe os dados de leads em tela.
+O servi√ßo de consumo tem um timer configurado para ficar ouvindo o banco em mem√≥ria e exibe os dados de leads em tela.
 
-## PrÈ-requisitos ##
+## Pr√©-requisitos ##
 
-- IDE Visual Studio vers„o >= 2022.
-- Docker vers„o >= 20.10.14.
+- IDE Visual Studio vers√£o >= 2022.
+- Docker vers√£o >= 20.10.14.
 - SDK .NET 6.
 - Windows >= 10.
 
-*A aplicaÁ„o pode funcionar em versıes anteriores das ferramentas acima, porÈm, È recomendado o uso das versıes correspondentes informadas, pois correspondem aos utilizados no desenvolvimento e testes da aplicaÁ„o.
+*A aplica√ß√£o pode funcionar em vers√µes anteriores das ferramentas acima, por√©m, √© recomendado o uso das vers√µes correspondentes informadas, pois correspondem aos utilizados no desenvolvimento e testes da aplica√ß√£o.
 
 ## Preparando o ambiente ##
 
-Com o docker em execuÁ„o, abra o console do gerenciador de pacotes do visual studio ou o prompt de comando.
+Com o docker em execu√ß√£o, abra o console do gerenciador de pacotes do visual studio ou o prompt de comando.
 
 Suba um container do RabbitMQ, conforme linha abaixo:
 
 	docker run -d --hostname my-rabbit --name some-rabbit -p 8080:15672 -p 5672:5672 rabbitmq:3-management
 
-ApÛs executar o comando acima, o docker ir· procurar localmente os arquivos necess·rio e, n„o encontrando, vai atÈ o dockerhub e os baixa, este processo pode demorar um pouco dependendo da sua internet.   
-Com o sucesso da instalaÁ„o confira no docker desktop confira na aba "containers" se o RabbitMQ est· em execuÁ„o.
+Ap√≥s executar o comando acima, o docker ir√° procurar localmente os arquivos necess√°rio e, n√£o encontrando, vai at√© o dockerhub e os baixa, este processo pode demorar um pouco dependendo da sua internet.   
+Com o sucesso da instala√ß√£o confira no docker desktop confira na aba "containers" se o RabbitMQ est√° em execu√ß√£o.
 
-Caso o container j· tenha sido criado, mas n„o esteja em execuÁ„o, clique no bot„o de executar no docker desktop ou execute o seguinte comando no terminal:
+Caso o container j√° tenha sido criado, mas n√£o esteja em execu√ß√£o, clique no bot√£o de executar no docker desktop ou execute o seguinte comando no terminal:
 
 	docker container start some-rabbit.
 
-No Visual Studio, defina a soluÁ„o para executar v·rios projetos de inicializaÁ„o, caso ainda n„o esteja configurado.
+No Visual Studio, defina a solu√ß√£o para executar v√°rios projetos de inicializa√ß√£o, caso ainda n√£o esteja configurado.
 	
-- No gerenciado de soluÁıes, clique com o bot„o direito na soluÁ„o e depois em "Definir projetos de inicializaÁ„o".
-- Na tela que abrir, selecione "Varios projetos de inicializaÁ„o", em seguida, na coluna "aÁ„o", coloque os dois projetos para "Iniciar", clique em "Aplicar" depois em "OK".
+- No gerenciado de solu√ß√µes, clique com o bot√£o direito na solu√ß√£o e depois em "Definir projetos de inicializa√ß√£o".
+- Na tela que abrir, selecione "Varios projetos de inicializa√ß√£o", em seguida, na coluna "a√ß√£o", coloque os dois projetos para "Iniciar", clique em "Aplicar" depois em "OK".
 
-## Executando a aplicaÁ„o ##
+## Executando a aplica√ß√£o ##
 
-No Visual Studio, clique em "Iniciar", ser· aberto duas telas, uma correspondende a aplicaÁ„o respons·vel por enviar os dados para lista de leads, um formul·rio com nome e idade, e outra respons·vel por consumir a lista de leads.
+No Visual Studio, clique em "Iniciar", ser√° aberto duas telas, uma correspondende a aplica√ß√£o respons√°vel por enviar os dados para lista de leads, um formul√°rio com nome e idade, e outra respons√°vel por consumir a lista de leads.
 
-VocÍ pode alimentar a lista de leads e assincronamente ir· ver a aplicaÁ„o consumidora exibir os dados do lead em tela, com o id gerado para o lead e data e hora de inserÁ„o desse registro.
+Voc√™ pode alimentar a lista de leads e assincronamente ir√° ver a aplica√ß√£o consumidora exibir os dados do lead em tela, com o id gerado para o lead e data e hora de inser√ß√£o desse registro.
 
-Caso queira comprovar a assincronia n„o bloqueante, execute apenas o servido de envio (RabbitMQSender), registre quandos leads quiser, depois abra a aplicaÁ„o consumidora (RabbitMQConsumer), vocÍ ver· a aplicaÁ„o iniciando, consumindo a fila e exibindo em tela os dados que estavam aguardando para serem consumidos.
+Caso queira comprovar a assincronia n√£o bloqueante, execute apenas o servido de envio (RabbitMQSender), registre quandos leads quiser, depois abra a aplica√ß√£o consumidora (RabbitMQConsumer), voc√™ ver√° a aplica√ß√£o iniciando, consumindo a fila e exibindo em tela os dados que estavam aguardando para serem consumidos.
 
-Esta soluÁ„o È exemplificativa, apÛs o consumo da fila pelo consumer, atualmente o dado È salvo em um 
-banco de dados em memÛria e permanece na fila por toda vida ˙til do container, em aplicaÁıes reais, 
-apÛs o dado ser consumido, normalmente o mesmo È retirado da fila depois de processado e, se for o caso, 
-persistido em banco de dados pela aplicaÁ„o consumidora.
+Esta solu√ß√£o √© exemplificativa, ap√≥s o consumo da fila pelo consumer, atualmente o dado √© salvo em um 
+banco de dados em mem√≥ria e permanece na fila por toda vida √∫til do container, em aplica√ß√µes reais, 
+ap√≥s o dado ser consumido, normalmente o mesmo √© retirado da fila depois de processado e, se for o caso, 
+persistido em banco de dados pela aplica√ß√£o consumidora.
 
-Caso queira ver o funcionamento do RabbitMQ a partir de uma interface gr·fica, com o container em execuÁ„o, abra seu navegador e v· atÈ localhost:8080.   
+Caso queira ver o funcionamento do RabbitMQ a partir de uma interface gr√°fica, com o container em execu√ß√£o, abra seu navegador e v√° at√© localhost:8080.   
 
-- Ser· aberto a tela de login do RabbitMQ, o usu·rio È "guest" e a senha È "guest" tambÈm. Clique em "Login".
-- Na aba "Queues" ser· mostrada todas as filas criadas, se vocÍ registrou pelo menos um lead no serviÁo de envio (RabbitMQSender), aparecer· a fila "LeadQueue".
-- Clicando nela abrir· uma p·gina contendo gr·ficos, informaÁıes sobre a fila e o histÛrico das mensagens enviadas.
-- VocÍ pode manter esta tela aberta e registrar leads, assim poder· ver o RabbitMQ processando a mensagem e mostrando as alteraÁıes no gr·fico.
+- Ser√° aberto a tela de login do RabbitMQ, o usu√°rio √© "guest" e a senha √© "guest" tamb√©m. Clique em "Login".
+- Na aba "Queues" ser√° mostrada todas as filas criadas, se voc√™ registrou pelo menos um lead no servi√ßo de envio (RabbitMQSender), aparecer√° a fila "LeadQueue".
+- Clicando nela abrir√° uma p√°gina contendo gr√°ficos, informa√ß√µes sobre a fila e o hist√≥rico das mensagens enviadas.
+- Voc√™ pode manter esta tela aberta e registrar leads, assim poder√° ver o RabbitMQ processando a mensagem e mostrando as altera√ß√µes no gr√°fico.
 
 
 ## Problemas conhecidos ##
 
- - O Docker, na vers„o citada acima, roda no WSL2 (Windows Subsystem for Linux) do Windows, caso vocÍ n„o tenha ou tenha uma vers„o incompatÌvel com o Docker, o mesmo ir· solicitar o update e informar· a referÍncia para instalaÁ„o / update.   
+ - O Docker, na vers√£o citada acima, roda no WSL2 (Windows Subsystem for Linux) do Windows, caso voc√™ n√£o tenha ou tenha uma vers√£o incompat√≠vel com o Docker, o mesmo ir√° solicitar o update e informar√° a refer√™ncia para instala√ß√£o / update.   
  Para saber mais sobre o WLS: https://learn.microsoft.com/pt-br/windows/wsl/about.
